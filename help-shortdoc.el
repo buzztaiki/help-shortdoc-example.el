@@ -26,12 +26,18 @@
 ;; This package allows to output shortdoc examples to *Help* buffer.
 ;; To use it, add the following to your init file:
 ;;
-;;         (help-shortdoc-setup)
+;;         (help-shortdoc-mode 1)
+;;
+;; For more information, please see <https://github.com/buzztaiki/help-shortdoc.el>.
 
 ;;; Code:
 
 (require 'shortdoc)
 (require 'help-fns)
+
+(defgroup help-shortdoc nil
+  "Output shortdoc examples to *Help* buffer."
+  :group 'help)
 
 ;;;###autoload
 (defun help-shortdoc (function)
@@ -50,9 +56,12 @@
             (insert " ")))))))
 
 ;;;###autoload
-(defun help-shortdoc-setup ()
-  "Setup `help-shortdoc'."
-  (add-hook 'help-fns-describe-function-functions #'help-shortdoc 100))
+(define-minor-mode help-shortdoc-mode
+  "Output shortdoc examples to *Help* buffer."
+  :global t
+  (if help-shortdoc-mode
+      (add-hook 'help-fns-describe-function-functions #'help-shortdoc 100)
+    (remove-hook 'help-fns-describe-function-functions #'help-shortdoc)))
 
 (provide 'help-shortdoc)
 ;;; help-shortdoc.el ends here

@@ -7,7 +7,7 @@ This package allows to output shortdoc examples to `*Help*` buffer.
 Add the following to your init file:
 
 ```lisp
-(help-shortdoc-setup)
+(help-shortdoc-mode 1)
 ```
 
 For example, if you type `M-x describe-function car`, the following will be output:
