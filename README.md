@@ -13,7 +13,7 @@ Add the following to your init file:
 For example, if you type `M-x describe-function car`, the following will be output:
 
 ```
-car is a built-in function in ‘src/data.c’.
+car is a built-in function in ‘C source code’.
 
 (car LIST)
 
@@ -27,14 +27,13 @@ Lisp concepts such as car, cdr, cons cell and list.
   Probably introduced at or before Emacs version 1.2.
   This function does not change global state, including the match data.
 
-Examples:
-
-  (car '(one two three))
-    ⇒ one
-  (car '(one . two))
-    ⇒ one
-  (car nil)
-    ⇒ nil
+  Examples:
+    (car '(one two three))
+      ⇒ one
+    (car '(one . two))
+      ⇒ one
+    (car nil)
+      ⇒ nil
 
 [back]
 ```

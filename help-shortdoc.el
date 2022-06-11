@@ -43,17 +43,18 @@
 (defun help-shortdoc (function)
   "Insert shortdoc examples of FUNCTION."
   (when-let ((groups (and (symbolp function) (shortdoc-function-groups function))))
-    (insert "\n" (propertize "Examples: " 'face 'bold) "\n\n")
-    (dolist (group groups)
-      (save-restriction
-        (narrow-to-region (point) (point))
-        (shortdoc--display-function (assq function (cdr (assq group shortdoc--groups))))
-        (save-excursion
-          (goto-char (point-min))
-          (when-let (match (text-property-search-forward 'face 'shortdoc-section t t))
-            (goto-char (1+ (prop-match-end match)))
-            (delete-region (point-min) (point))
-            (insert " ")))))))
+    (save-restriction
+      (narrow-to-region (point) (point))
+      (insert "\nExamples:\n")
+      (dolist (group groups)
+        (save-restriction
+          (narrow-to-region (point) (point))
+          (shortdoc--display-function (assq function (cdr (assq group shortdoc--groups))))
+          (save-excursion
+            (goto-char (point-min))
+            (when-let (match (text-property-search-forward 'face 'shortdoc-section t t))
+              (delete-region (point-min) (prop-match-end match))))))
+      (indent-rigidly (point-min) (point-max) 2))))
 
 ;;;###autoload
 (define-minor-mode help-shortdoc-mode
