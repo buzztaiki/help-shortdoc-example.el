@@ -1,9 +1,9 @@
-;;; help-shortdoc.el --- Output shortdoc examples to *Help* buffer -*- lexical-binding: t; -*-
+;;; help-shortdoc-example.el --- Display shortdoc examples to *Help* buffer -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022  Taiki Sugawara
 
 ;; Author: Taiki Sugawara <buzz.taiki@gmail.com>
-;; URL: https://github.com/buzztaiki/help-shortdoc.el
+;; URL: https://github.com/buzztaiki/help-shortdoc-example.el
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "28.1"))
 ;; Keywords: help
@@ -23,24 +23,24 @@
 
 ;;; Commentary:
 
-;; This package allows to output shortdoc examples to *Help* buffer.
+;; This package allows to display shortdoc examples to *Help* buffer.
 ;; To use it, add the following to your init file:
 ;;
-;;         (help-shortdoc-mode 1)
+;;         (help-shortdoc-example-mode 1)
 ;;
-;; For more information, please see <https://github.com/buzztaiki/help-shortdoc.el>.
+;; For more information, please see <https://github.com/buzztaiki/help-shortdoc-example.el>.
 
 ;;; Code:
 
 (require 'shortdoc)
 (require 'help-fns)
 
-(defgroup help-shortdoc nil
-  "Output shortdoc examples to *Help* buffer."
+(defgroup help-shortdoc-example nil
+  "Display shortdoc examples to *Help* buffer."
   :group 'help)
 
 ;;;###autoload
-(defun help-shortdoc (function)
+(defun help-shortdoc-example (function)
   "Insert shortdoc examples of FUNCTION."
   (when-let ((groups (and (symbolp function) (shortdoc-function-groups function))))
     (save-restriction
@@ -57,12 +57,12 @@
       (indent-rigidly (point-min) (point-max) 2))))
 
 ;;;###autoload
-(define-minor-mode help-shortdoc-mode
-  "Output shortdoc examples to *Help* buffer."
+(define-minor-mode help-shortdoc-example-mode
+  "Display shortdoc examples to *Help* buffer."
   :global t
-  (if help-shortdoc-mode
-      (add-hook 'help-fns-describe-function-functions #'help-shortdoc 100)
-    (remove-hook 'help-fns-describe-function-functions #'help-shortdoc)))
+  (if help-shortdoc-example-mode
+      (add-hook 'help-fns-describe-function-functions #'help-shortdoc-example 100)
+    (remove-hook 'help-fns-describe-function-functions #'help-shortdoc-example)))
 
-(provide 'help-shortdoc)
-;;; help-shortdoc.el ends here
+(provide 'help-shortdoc-example)
+;;; help-shortdoc-example.el ends here

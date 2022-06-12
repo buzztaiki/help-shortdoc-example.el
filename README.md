@@ -1,16 +1,16 @@
-# help-shortdoc
+# help-shortdoc-example
 
-This package allows to output shortdoc examples to `*Help*` buffer.
+This package allows to display shortdoc examples to `*Help*` buffer.
 
 ## Usage
 
 Add the following to your init file:
 
 ```lisp
-(help-shortdoc-mode 1)
+(help-shortdoc-example-mode 1)
 ```
 
-For example, if you type `M-x describe-function car`, the following will be output:
+For example, if you type `M-x describe-function car`, the following will be shown:
 
 ```
 car is a built-in function in ‘C source code’.
