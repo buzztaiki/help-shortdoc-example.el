@@ -52,8 +52,8 @@
           (shortdoc--display-function (assq function (cdr (assq group shortdoc--groups))))
           (save-excursion
             (goto-char (point-min))
-            (when-let (match (text-property-search-forward 'face 'shortdoc-section t t))
-              (delete-region (point-min) (prop-match-end match))))))
+            (when (re-search-forward "^  (" nil t)
+              (delete-region (point-min) (match-beginning 0))))))
       (indent-rigidly (point-min) (point-max) 2))))
 
 ;;;###autoload
